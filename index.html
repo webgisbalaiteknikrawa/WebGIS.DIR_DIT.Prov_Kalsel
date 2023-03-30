@@ -1,0 +1,541 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/multi-style-layer.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
+        <script src="data/BatasAdministrasiKabupatenKota_1.js"></script>
+        <script src="data/DIR_Baku_Kab_Kalsel_2.js"></script>
+        <script src="data/DIR_Baku_Provinsi_Kalsel_3.js"></script>
+        <script src="data/DIR_Baku_Pusat_Kalsel_4.js"></script>
+        <script src="data/BatasAdministrasiKabupatenKotadiProvinsiKalimantanSelatan_5.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[-3.3951219231609304,114.24343846723737],[-2.5955973152011516,115.64476791689374]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        map.createPane('pane_GoogleSatelite_0');
+        map.getPane('pane_GoogleSatelite_0').style.zIndex = 400;
+        var layer_GoogleSatelite_0 = L.tileLayer('https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+            pane: 'pane_GoogleSatelite_0',
+            opacity: 1.0,
+            attribution: '',
+            minZoom: 1,
+            maxZoom: 28,
+            minNativeZoom: 0,
+            maxNativeZoom: 18
+        });
+        layer_GoogleSatelite_0;
+        map.addLayer(layer_GoogleSatelite_0);
+        function pop_BatasAdministrasiKabupatenKota_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>WADMKK</strong><br />' + (feature.properties['WADMKK'] !== null ? autolinker.link(feature.properties['WADMKK'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_BatasAdministrasiKabupatenKota_1_0() {
+            return {
+                pane: 'pane_BatasAdministrasiKabupatenKota_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(133,182,111,0.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_BatasAdministrasiKabupatenKota_1');
+        map.getPane('pane_BatasAdministrasiKabupatenKota_1').style.zIndex = 401;
+        map.getPane('pane_BatasAdministrasiKabupatenKota_1').style['mix-blend-mode'] = 'normal';
+        var layer_BatasAdministrasiKabupatenKota_1 = new L.geoJson(json_BatasAdministrasiKabupatenKota_1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_BatasAdministrasiKabupatenKota_1',
+            layerName: 'layer_BatasAdministrasiKabupatenKota_1',
+            pane: 'pane_BatasAdministrasiKabupatenKota_1',
+            onEachFeature: pop_BatasAdministrasiKabupatenKota_1,
+            style: style_BatasAdministrasiKabupatenKota_1_0,
+        });
+        bounds_group.addLayer(layer_BatasAdministrasiKabupatenKota_1);
+        map.addLayer(layer_BatasAdministrasiKabupatenKota_1);
+        function pop_DIR_Baku_Kab_Kalsel_2(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>NAMA_DIR</strong><br />' + (feature.properties['NAMA_DIR'] !== null ? autolinker.link(feature.properties['NAMA_DIR'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Provinsi</th>\
+                        <td>' + (feature.properties['Provinsi'] !== null ? autolinker.link(feature.properties['Provinsi'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Kewenangan</th>\
+                        <td>' + (feature.properties['Kewenangan'] !== null ? autolinker.link(feature.properties['Kewenangan'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Luas_Ha</th>\
+                        <td>' + (feature.properties['Luas_Ha'] !== null ? autolinker.link(feature.properties['Luas_Ha'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Status</th>\
+                        <td>' + (feature.properties['Status'] !== null ? autolinker.link(feature.properties['Status'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Keterangan</th>\
+                        <td>' + (feature.properties['Keterangan'] !== null ? autolinker.link(feature.properties['Keterangan'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Overlap</th>\
+                        <td>' + (feature.properties['Overlap'] !== null ? autolinker.link(feature.properties['Overlap'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_DIR_Baku_Kab_Kalsel_2_0(feature) {
+            switch(String(feature.properties['Kewenangan'])) {
+                case 'Kab. Barito Kuala':
+                    return {
+                pane: 'pane_DIR_Baku_Kab_Kalsel_2',
+                opacity: 1,
+                color: 'rgba(31,120,180,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(206,110,228,0.3058823529411765)',
+                interactive: true,
+            }
+                    break;
+                case 'Kab. Tapin':
+                    return {
+                pane: 'pane_DIR_Baku_Kab_Kalsel_2',
+                opacity: 1,
+                color: 'rgba(227,26,28,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(114,70,208,0.2823529411764706)',
+                interactive: true,
+            }
+                    break;
+                case 'Kabupaten Balangan':
+                    return {
+                pane: 'pane_DIR_Baku_Kab_Kalsel_2',
+                opacity: 1,
+                color: 'rgba(255,127,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(193,98,150,0.25882352941176473)',
+                interactive: true,
+            }
+                    break;
+                case 'Kabupaten Banjar':
+                    return {
+                pane: 'pane_DIR_Baku_Kab_Kalsel_2',
+                opacity: 1,
+                color: 'rgba(51,160,44,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(171,28,40,0.3333333333333333)',
+                interactive: true,
+            }
+                    break;
+                case 'Kabupaten Hulu Sungai Selatan':
+                    return {
+                pane: 'pane_DIR_Baku_Kab_Kalsel_2',
+                opacity: 1,
+                color: 'rgba(255,127,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(108,143,86,0.3137254901960784)',
+                interactive: true,
+            }
+                    break;
+                case 'Kabupaten Hulu Sungai Tengah':
+                    return {
+                pane: 'pane_DIR_Baku_Kab_Kalsel_2',
+                opacity: 1,
+                color: 'rgba(34,82,228,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(126,193,252,0.3137254901960784)',
+                interactive: true,
+            }
+                    break;
+                case 'Kabupaten Hulu Sungai Utara':
+                    return {
+                pane: 'pane_DIR_Baku_Kab_Kalsel_2',
+                opacity: 1,
+                color: 'rgba(31,120,180,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(233,87,252,0.3803921568627451)',
+                interactive: true,
+            }
+                    break;
+                case 'Kabupaten Kotabaru':
+                    return {
+                pane: 'pane_DIR_Baku_Kab_Kalsel_2',
+                opacity: 1,
+                color: 'rgba(51,160,44,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(204,183,66,0.2901960784313726)',
+                interactive: true,
+            }
+                    break;
+                case 'Kabupaten Tabalong':
+                    return {
+                pane: 'pane_DIR_Baku_Kab_Kalsel_2',
+                opacity: 1,
+                color: 'rgba(225,46,138,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(161,124,31,0.2627450980392157)',
+                interactive: true,
+            }
+                    break;
+                case 'Kabupaten Tanah Bumbu':
+                    return {
+                pane: 'pane_DIR_Baku_Kab_Kalsel_2',
+                opacity: 1,
+                color: 'rgba(255,127,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(138,160,241,0.3058823529411765)',
+                interactive: true,
+            }
+                    break;
+                case 'Kabupaten Tanah Laut':
+                    return {
+                pane: 'pane_DIR_Baku_Kab_Kalsel_2',
+                opacity: 1,
+                color: 'rgba(51,160,44,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(203,55,229,0.3333333333333333)',
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_DIR_Baku_Kab_Kalsel_2');
+        map.getPane('pane_DIR_Baku_Kab_Kalsel_2').style.zIndex = 402;
+        map.getPane('pane_DIR_Baku_Kab_Kalsel_2').style['mix-blend-mode'] = 'normal';
+        var layer_DIR_Baku_Kab_Kalsel_2 = new L.geoJson(json_DIR_Baku_Kab_Kalsel_2, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_DIR_Baku_Kab_Kalsel_2',
+            layerName: 'layer_DIR_Baku_Kab_Kalsel_2',
+            pane: 'pane_DIR_Baku_Kab_Kalsel_2',
+            onEachFeature: pop_DIR_Baku_Kab_Kalsel_2,
+            style: style_DIR_Baku_Kab_Kalsel_2_0,
+        });
+        bounds_group.addLayer(layer_DIR_Baku_Kab_Kalsel_2);
+        map.addLayer(layer_DIR_Baku_Kab_Kalsel_2);
+        function pop_DIR_Baku_Provinsi_Kalsel_3(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Kewenangan</th>\
+                        <td>' + (feature.properties['Kewenangan'] !== null ? autolinker.link(feature.properties['Kewenangan'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Luas_Ha</th>\
+                        <td>' + (feature.properties['Luas_Ha'] !== null ? autolinker.link(feature.properties['Luas_Ha'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Status</th>\
+                        <td>' + (feature.properties['Status'] !== null ? autolinker.link(feature.properties['Status'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Nm_Dat_Das</strong><br />' + (feature.properties['Nm_Dat_Das'] !== null ? autolinker.link(feature.properties['Nm_Dat_Das'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Thn_Dat</th>\
+                        <td>' + (feature.properties['Thn_Dat'] !== null ? autolinker.link(feature.properties['Thn_Dat'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Nama_WS</th>\
+                        <td>' + (feature.properties['Nama_WS'] !== null ? autolinker.link(feature.properties['Nama_WS'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Nama_DAS</th>\
+                        <td>' + (feature.properties['Nama_DAS'] !== null ? autolinker.link(feature.properties['Nama_DAS'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Kabupaten</th>\
+                        <td>' + (feature.properties['Kabupaten'] !== null ? autolinker.link(feature.properties['Kabupaten'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Kecamatan</th>\
+                        <td>' + (feature.properties['Kecamatan'] !== null ? autolinker.link(feature.properties['Kecamatan'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Desa_Kel</th>\
+                        <td>' + (feature.properties['Desa_Kel'] !== null ? autolinker.link(feature.properties['Desa_Kel'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Jenis_DI</th>\
+                        <td>' + (feature.properties['Jenis_DI'] !== null ? autolinker.link(feature.properties['Jenis_DI'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_DIR_Baku_Provinsi_Kalsel_3_0() {
+            return {
+                pane: 'pane_DIR_Baku_Provinsi_Kalsel_3',
+                opacity: 1,
+                color: 'rgba(58,255,173,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(231,113,72,0.28627450980392155)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_DIR_Baku_Provinsi_Kalsel_3');
+        map.getPane('pane_DIR_Baku_Provinsi_Kalsel_3').style.zIndex = 403;
+        map.getPane('pane_DIR_Baku_Provinsi_Kalsel_3').style['mix-blend-mode'] = 'normal';
+        var layer_DIR_Baku_Provinsi_Kalsel_3 = new L.geoJson(json_DIR_Baku_Provinsi_Kalsel_3, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_DIR_Baku_Provinsi_Kalsel_3',
+            layerName: 'layer_DIR_Baku_Provinsi_Kalsel_3',
+            pane: 'pane_DIR_Baku_Provinsi_Kalsel_3',
+            onEachFeature: pop_DIR_Baku_Provinsi_Kalsel_3,
+            style: style_DIR_Baku_Provinsi_Kalsel_3_0,
+        });
+        bounds_group.addLayer(layer_DIR_Baku_Provinsi_Kalsel_3);
+        map.addLayer(layer_DIR_Baku_Provinsi_Kalsel_3);
+        function pop_DIR_Baku_Pusat_Kalsel_4(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>Nm_Inf</strong><br />' + (feature.properties['Nm_Inf'] !== null ? autolinker.link(feature.properties['Nm_Inf'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Kewenangan</th>\
+                        <td>' + (feature.properties['Kewenangan'] !== null ? autolinker.link(feature.properties['Kewenangan'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Luas_Ha</th>\
+                        <td>' + (feature.properties['Luas_Ha'] !== null ? autolinker.link(feature.properties['Luas_Ha'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Provinsi</th>\
+                        <td>' + (feature.properties['Provinsi'] !== null ? autolinker.link(feature.properties['Provinsi'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Kab_Kota</th>\
+                        <td>' + (feature.properties['Kab_Kota'] !== null ? autolinker.link(feature.properties['Kab_Kota'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Luas</th>\
+                        <td>' + (feature.properties['Luas'] !== null ? autolinker.link(feature.properties['Luas'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_DIR_Baku_Pusat_Kalsel_4_0() {
+            return {
+                pane: 'pane_DIR_Baku_Pusat_Kalsel_4',
+                opacity: 1,
+                color: 'rgba(195,224,81,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(166,206,227,0.30980392156862746)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_DIR_Baku_Pusat_Kalsel_4');
+        map.getPane('pane_DIR_Baku_Pusat_Kalsel_4').style.zIndex = 404;
+        map.getPane('pane_DIR_Baku_Pusat_Kalsel_4').style['mix-blend-mode'] = 'normal';
+        var layer_DIR_Baku_Pusat_Kalsel_4 = new L.geoJson(json_DIR_Baku_Pusat_Kalsel_4, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_DIR_Baku_Pusat_Kalsel_4',
+            layerName: 'layer_DIR_Baku_Pusat_Kalsel_4',
+            pane: 'pane_DIR_Baku_Pusat_Kalsel_4',
+            onEachFeature: pop_DIR_Baku_Pusat_Kalsel_4,
+            style: style_DIR_Baku_Pusat_Kalsel_4_0,
+        });
+        bounds_group.addLayer(layer_DIR_Baku_Pusat_Kalsel_4);
+        map.addLayer(layer_DIR_Baku_Pusat_Kalsel_4);
+        function pop_BatasAdministrasiKabupatenKotadiProvinsiKalimantanSelatan_5(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>Batas_Admi</strong><br />' + (feature.properties['Batas_Admi'] !== null ? autolinker.link(feature.properties['Batas_Admi'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_BatasAdministrasiKabupatenKotadiProvinsiKalimantanSelatan_5_0() {
+            return {
+                pane: 'pane_BatasAdministrasiKabupatenKotadiProvinsiKalimantanSelatan_5',
+                opacity: 1,
+                color: 'rgba(163,163,163,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 3.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        function style_BatasAdministrasiKabupatenKotadiProvinsiKalimantanSelatan_5_1() {
+            return {
+                pane: 'pane_BatasAdministrasiKabupatenKotadiProvinsiKalimantanSelatan_5',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '10,5,1,5,1,5',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 1.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_BatasAdministrasiKabupatenKotadiProvinsiKalimantanSelatan_5');
+        map.getPane('pane_BatasAdministrasiKabupatenKotadiProvinsiKalimantanSelatan_5').style.zIndex = 405;
+        map.getPane('pane_BatasAdministrasiKabupatenKotadiProvinsiKalimantanSelatan_5').style['mix-blend-mode'] = 'normal';
+        var layer_BatasAdministrasiKabupatenKotadiProvinsiKalimantanSelatan_5 = new L.geoJson.multiStyle(json_BatasAdministrasiKabupatenKotadiProvinsiKalimantanSelatan_5, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_BatasAdministrasiKabupatenKotadiProvinsiKalimantanSelatan_5',
+            layerName: 'layer_BatasAdministrasiKabupatenKotadiProvinsiKalimantanSelatan_5',
+            pane: 'pane_BatasAdministrasiKabupatenKotadiProvinsiKalimantanSelatan_5',
+            onEachFeature: pop_BatasAdministrasiKabupatenKotadiProvinsiKalimantanSelatan_5,
+            styles: [style_BatasAdministrasiKabupatenKotadiProvinsiKalimantanSelatan_5_0,style_BatasAdministrasiKabupatenKotadiProvinsiKalimantanSelatan_5_1,]
+        });
+        bounds_group.addLayer(layer_BatasAdministrasiKabupatenKotadiProvinsiKalimantanSelatan_5);
+        map.addLayer(layer_BatasAdministrasiKabupatenKotadiProvinsiKalimantanSelatan_5);
+        var osmGeocoder = new L.Control.Geocoder({
+            collapsed: true,
+            position: 'topleft',
+            text: 'Search',
+            title: 'Testing'
+        }).addTo(map);
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .className += ' fa fa-search';
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .title += 'Search for a place';
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'<img src="legend/BatasAdministrasiKabupatenKotadiProvinsiKalimantanSelatan_5.png" /> Batas Administrasi Kabupaten Kota di Provinsi Kalimantan Selatan': layer_BatasAdministrasiKabupatenKotadiProvinsiKalimantanSelatan_5,'<img src="legend/DIR_Baku_Pusat_Kalsel_4.png" /> DIR_Baku_Pusat_Kalsel': layer_DIR_Baku_Pusat_Kalsel_4,'<img src="legend/DIR_Baku_Provinsi_Kalsel_3.png" /> DIR_Baku_Provinsi_Kalsel': layer_DIR_Baku_Provinsi_Kalsel_3,'DIR_Baku_Kab_Kalsel<br /><table><tr><td style="text-align: center;"><img src="legend/DIR_Baku_Kab_Kalsel_2_KabBaritoKuala0.png" /></td><td>Kab. Barito Kuala</td></tr><tr><td style="text-align: center;"><img src="legend/DIR_Baku_Kab_Kalsel_2_KabTapin1.png" /></td><td>Kab. Tapin</td></tr><tr><td style="text-align: center;"><img src="legend/DIR_Baku_Kab_Kalsel_2_KabupatenBalangan2.png" /></td><td>Kabupaten Balangan</td></tr><tr><td style="text-align: center;"><img src="legend/DIR_Baku_Kab_Kalsel_2_KabupatenBanjar3.png" /></td><td>Kabupaten Banjar</td></tr><tr><td style="text-align: center;"><img src="legend/DIR_Baku_Kab_Kalsel_2_KabupatenHuluSungaiSelatan4.png" /></td><td>Kabupaten Hulu Sungai Selatan</td></tr><tr><td style="text-align: center;"><img src="legend/DIR_Baku_Kab_Kalsel_2_KabupatenHuluSungaiTengah5.png" /></td><td>Kabupaten Hulu Sungai Tengah</td></tr><tr><td style="text-align: center;"><img src="legend/DIR_Baku_Kab_Kalsel_2_KabupatenHuluSungaiUtara6.png" /></td><td>Kabupaten Hulu Sungai Utara</td></tr><tr><td style="text-align: center;"><img src="legend/DIR_Baku_Kab_Kalsel_2_KabupatenKotabaru7.png" /></td><td>Kabupaten Kotabaru</td></tr><tr><td style="text-align: center;"><img src="legend/DIR_Baku_Kab_Kalsel_2_KabupatenTabalong8.png" /></td><td>Kabupaten Tabalong</td></tr><tr><td style="text-align: center;"><img src="legend/DIR_Baku_Kab_Kalsel_2_KabupatenTanahBumbu9.png" /></td><td>Kabupaten Tanah Bumbu</td></tr><tr><td style="text-align: center;"><img src="legend/DIR_Baku_Kab_Kalsel_2_KabupatenTanahLaut10.png" /></td><td>Kabupaten Tanah Laut</td></tr></table>': layer_DIR_Baku_Kab_Kalsel_2,'<img src="legend/BatasAdministrasiKabupatenKota_1.png" /> Batas Administrasi Kabupaten Kota': layer_BatasAdministrasiKabupatenKota_1,"Google Satelite": layer_GoogleSatelite_0,}).addTo(map);
+        setBounds();
+        var i = 0;
+        layer_BatasAdministrasiKabupatenKota_1.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['WADMKK'] !== null?String('<div style="color: #ffffff; font-size: 5pt; font-family: \'MS Shell Dlg 2\', sans-serif;">' + layer.feature.properties['WADMKK']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_BatasAdministrasiKabupatenKota_1'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        resetLabels([layer_BatasAdministrasiKabupatenKota_1]);
+        map.on("zoomend", function(){
+            resetLabels([layer_BatasAdministrasiKabupatenKota_1]);
+        });
+        map.on("layeradd", function(){
+            resetLabels([layer_BatasAdministrasiKabupatenKota_1]);
+        });
+        map.on("layerremove", function(){
+            resetLabels([layer_BatasAdministrasiKabupatenKota_1]);
+        });
+        </script>
+    </body>
+</html>
